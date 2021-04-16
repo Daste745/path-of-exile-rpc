@@ -3,14 +3,16 @@ import time
 from watchdog.observers import Observer
 from watchdog.events import FileSystemEventHandler
 
-from pypresence import Presence
+from pypresence import Presence, DiscordError
 
 
 def set_presence(state: str = None):
-    presence.update(large_image="logo",
-                    large_text="git.io/Jv6NZ",
-                    start=begin_time,
-                    state=state)
+    presence.update(
+        large_image="logo",
+        large_text="git.io/Jv6NZ",
+        start=begin_time,
+        state=state,
+    )
 
 
 class FileEventHandler(FileSystemEventHandler):
@@ -26,11 +28,13 @@ class FileEventHandler(FileSystemEventHandler):
 
             if "entered" in line:
                 # Strip the line to just the location name
-                entered_location = \
-                    line.split("entered")[1].replace(".", "").strip()
+                entered_location = line.split("entered")[1].replace(".", "").strip()
 
-                set_presence(entered_location)
-                print(f"Entered {entered_location}")
+                try:
+                    set_presence(entered_location)
+                    print(f"Entered {entered_location}")
+                except DiscordError:
+                    pass
 
 
 if __name__ == "__main__":
