@@ -2,7 +2,7 @@
 
 Simple Path of Exile Rich Presence for Discord. Displays time from launch and current location (defults to "Main Menu" at startup and waits for location change).
 
-![](https://i.imgur.com/5priaBA.png) | ![](https://i.imgur.com/ChNhmHm.png)
+![](examples/menu.png) | ![](examples/location.png)
 :-:|:-:
 
 # Running
